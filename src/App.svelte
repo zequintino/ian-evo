@@ -1,41 +1,49 @@
 <script lang="ts">
-  import EvidenceGrid from './lib/EvidenceGrid.svelte';
+  import EvidenceGrid from "./lib/EvidenceGrid.svelte";
+  import FlashingText from "./lib/FlashingText.svelte";
 
-  type TypewriterParams = {
-    speed?: number;
+  // type TypewriterParams = {
+  //   speed?: number;
+  // };
+
+  // function typewriter(node: HTMLElement, { speed = 1 }: TypewriterParams) {
+  //   const originalHTML = node.innerHTML;
+  //   const textContent = node.textContent || "";
+  //   const duration = textContent.length / (speed * 0.01);
+
+  //   const segments = originalHTML.match(/<[^>]+>|[^<]+/g) || [];
+
+  //   return {
+  //     duration,
+  //     tick: (t: number) => {
+  //       const targetTextLength = ~~(textContent.length * t);
+  //       let currentTextLength = 0;
+  //       let outputHTML = "";
+
+  //       for (const segment of segments) {
+  //         if (segment.startsWith("<") && segment.endsWith(">")) {
+  //           outputHTML += segment;
+  //         } else {
+  //           const remainingTarget = targetTextLength - currentTextLength;
+  //           if (remainingTarget <= 0) {
+  //             continue;
+  //           }
+  //           const segmentPortion = segment.slice(0, remainingTarget);
+  //           outputHTML += segmentPortion;
+  //           currentTextLength += segment.length;
+  //         }
+  //       }
+  //       node.innerHTML = outputHTML;
+  //     },
+  //   };
+  // }
+
+  const titles = {
+    main: "ie",
+    subtitle: "Cursed tech for<br />mischievous togetherness",
+    manifesto: "Manifesto",
+    evidence: "Evidence",
   };
-
-  function typewriter(node: HTMLElement, { speed = 1 }: TypewriterParams) {
-    const originalHTML = node.innerHTML;
-    const textContent = node.textContent || "";
-    const duration = textContent.length / (speed * 0.01);
-
-    const segments = originalHTML.match(/<[^>]+>|[^<]+/g) || [];
-
-    return {
-      duration,
-      tick: (t: number) => {
-        const targetTextLength = ~~(textContent.length * t);
-        let currentTextLength = 0;
-        let outputHTML = "";
-
-        for (const segment of segments) {
-          if (segment.startsWith("<") && segment.endsWith(">")) {
-            outputHTML += segment;
-          } else {
-            const remainingTarget = targetTextLength - currentTextLength;
-            if (remainingTarget <= 0) {
-              continue;
-            }
-            const segmentPortion = segment.slice(0, remainingTarget);
-            outputHTML += segmentPortion;
-            currentTextLength += segment.length;
-          }
-        }
-        node.innerHTML = outputHTML;
-      },
-    };
-  }
 
   const paragraphs = {
     intro: `
@@ -56,71 +64,87 @@
   const evidenceData = [
     {
       title: "Is the Machine Working?",
-      description: "Find out if the ticket machines are broken before you go underground. Built with scrap code and civic frustration.",
-      status: "[Coming Soon]"
+      description:
+        "Find out if the ticket machines are broken before you go underground. Built with scrap code and civic frustration.",
+      status: "[Coming Soon]",
     },
     {
       title: "Ham Prep PT",
       description: "The Millennial Guide to the CAT III exam in Portugal.",
-      status: "[Coming Soon]"
+      status: "[Coming Soon]",
     },
     {
       title: "Careful, PiBites",
-      description: "A Raspberry Pi barks if someone enters your flat. Because thieves deserve to laugh too.",
-      status: "[Coming Soon]"
+      description:
+        "A Raspberry Pi barks if someone enters your flat. Because thieves deserve to laugh too.",
+      status: "[Coming Soon]",
     },
     {
       title: "SpamBots for a Better World",
-      description: "The daily automated spam will continue until infrastructure improves. Anti-bureaucracy strategies for the new world.",
-      status: "[Coming Soon]"
-    }
+      description:
+        "The daily automated spam will continue until infrastructure improves. Anti-bureaucracy strategies for the new world.",
+      status: "[Coming Soon]",
+    },
   ];
 </script>
 
 <main>
-  <h1>ie</h1>
+  <FlashingText
+    tag="h1"
+    content={titles.main}
+    flashInterval={1000}
+    flashDuration={100}
+  />
 
   <section style="margin: 0 0 15rem 0">
-    <h2>
-      Cursed tech for<br />
-      mischievous togetherness
-    </h2>
+    <FlashingText
+      tag="h2"
+      content={titles.subtitle}
+      flashInterval={1100}
+      flashDuration={200}
+    />
     <div style="position: relative;">
       <p style="visibility: hidden;">
         {@html paragraphs.intro}
       </p>
-      <p
-        style="position: absolute; top: 0; left: 0; width: 100%;"
-        transition:typewriter={{ speed: 2 }}
-      >
+      <!-- transition:typewriter={{ speed: 2 }} -->
+      <p style="position: absolute; top: 0; left: 0; width: 100%;">
         {@html paragraphs.intro}
       </p>
     </div>
   </section>
 
   <section style="margin: 0 0 7rem 0">
-    <h2>Manifesto</h2>
+    <FlashingText
+      tag="h2"
+      content={titles.manifesto}
+      flashInterval={1500}
+      flashDuration={400}
+    />
     <div style="position: relative;">
       <p style="visibility: hidden;">
         {@html paragraphs.manifesto}
       </p>
-      <p
-        style="position: absolute; top: 0; left: 0; width: 100%;"
-        transition:typewriter={{ speed: 3 }}
-      >
+      <!-- transition:typewriter={{ speed: 3 }} -->
+      <p style="position: absolute; top: 0; left: 0; width: 100%;">
         {@html paragraphs.manifesto}
       </p>
     </div>
   </section>
 
   <section style="margin: 0 0 7rem 0">
-    <h2>Evidence</h2>
+    <FlashingText
+      tag="h2"
+      content={titles.evidence}
+      flashInterval={800}
+      flashDuration={100}
+    />
     <EvidenceGrid evidences={evidenceData} />
   </section>
 </main>
 
 <style>
-  h1 {
+  :global(h1) {
     font-family: "Inknut Antiqua";
     font-weight: 300;
     font-size: 9rem;
@@ -131,7 +155,7 @@
     padding: 0;
   }
 
-  h2 {
+  :global(h2) {
     font-family: "Inknut Antiqua";
     font-weight: 300;
     font-size: 3.7rem;
