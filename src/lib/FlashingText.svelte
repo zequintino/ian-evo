@@ -7,22 +7,40 @@
     flashColor?: string;
     flashInterval?: number;
     flashDuration?: number;
+    glitchInterval?: number;
+    glitchDuration?: number;
   };
 
   let {
     tag,
     content,
-    flashColor = "#F8F8F8",
+    flashColor = "#E35B52",
     flashInterval = 150,
     flashDuration = 100,
+    glitchInterval = 2000,
+    glitchDuration = 50,
   }: Props = $props();
 
   let elementRef: HTMLElement | null = null;
-  let intervalId: number | undefined = undefined;
+  let flashIntervalId: number | undefined = undefined;
+  let glitchIntervalId: number | undefined = undefined;
   let spans: HTMLElement[] = [];
 
+  const glitchChars = [
+    "!@#$%¨&*()_+-=[]{}|;:,./<>?",
+    "∑∏∆√∞≠≈×÷±⌐¬½¼¾¥€£¢",
+    "←↑→↓↔↕↨∈∉⊂⊃⊆⊇⊄⋂⋃",
+    "┌┐└┘├┤┬┴┼━┃┏┓┗┛┣┫┳┻╋",
+    "■□▢▣▤▥▦▧▨▩▪▫▬▭▮▯▰▱▲△▴▵▶▷▸▹►▻▼▽▾▿◀◁◂◃◄◅◆◇◈◉◊○●◐◑◒◓◔◕◖◗",
+    "¹²³ªº°¡¿ßÐðÞþµ¶·¸º¨˙`´ˆ¯˘˚˜¯",
+  ].join("");
+
+  function getRandomGlitchChar() {
+    return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+  }
+
   // Split content into characters/tags, wrapping chars in spans
-  const segments = content.match(/<[^>]+>|./gs) || []; // Match tags or single chars (incl. whitespace)
+  const segments = content.match(/<[^>]+>|./gs) || [];
   const processedContent = segments
     .map((seg) => {
       if (seg.startsWith("<") && seg.endsWith(">")) {
@@ -30,55 +48,75 @@
       } else if (seg.trim() === "") {
         return seg;
       } else {
-        return `<span class="flashable">${seg}</span>`;
+        return `<span class="flashable" data-char="${seg}">${seg}</span>`;
       }
     })
     .join("");
 
   onMount(() => {
     if (elementRef) {
-      // Get references to the character spans after mount
       spans = Array.from(elementRef.querySelectorAll(".flashable"));
 
-      intervalId = setInterval(() => {
+      flashIntervalId = setInterval(() => {
         if (spans.length > 0) {
           const randomIndex = Math.floor(Math.random() * spans.length);
           const span = spans[randomIndex];
 
           if (span) {
             const originalColor =
-              span.style.color || window.getComputedStyle(span).color; // Store original (or inherited) color
-            span.style.transition = "color 0.05s ease-in-out"; // Quick transition
+              span.style.color || window.getComputedStyle(span).color;
+            span.style.transition = "color 0.05s ease-in-out";
             span.style.color = flashColor;
 
             setTimeout(() => {
-              // Restore original color after flash duration
               span.style.color = originalColor;
             }, flashDuration);
           }
         }
       }, flashInterval);
+
+      glitchIntervalId = setInterval(() => {
+        if (spans.length > 0) {
+          // Glitch multiple characters at once for better effect
+          const numGlitches = Math.floor(Math.random() * 3) + 1; // 1-3 glitches at once
+
+          for (let i = 0; i < numGlitches; i++) {
+            const randomIndex = Math.floor(Math.random() * spans.length);
+            const span = spans[randomIndex];
+
+            if (span) {
+              const originalChar =
+                span.getAttribute("data-char") || span.textContent;
+              const glitchChar = getRandomGlitchChar();
+              span.textContent = glitchChar;
+
+              setTimeout(() => {
+                span.textContent = originalChar;
+              }, glitchDuration);
+            }
+          }
+        }
+      }, glitchInterval);
     }
   });
 
   onDestroy(() => {
-    if (intervalId) {
-      clearInterval(intervalId);
+    if (flashIntervalId) {
+      clearInterval(flashIntervalId);
+    }
+    if (glitchIntervalId) {
+      clearInterval(glitchIntervalId);
     }
   });
 </script>
 
-<!-- Render the dynamic tag with processed content -->
 <svelte:element this={tag} bind:this={elementRef}>
   {@html processedContent}
 </svelte:element>
 
 <style>
-  /* Add any specific styles for the container if needed */
-  :global(.flashable) {
-    /* Ensures spans behave correctly for styling */
+  /* :global(.flashable) {
     display: inline-block;
-    /* Prevent color inheritance from overriding flash */
-    color: inherit;
-  }
+    white-space: nowrap;
+  } */
 </style>

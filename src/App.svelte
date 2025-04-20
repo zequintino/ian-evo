@@ -43,6 +43,7 @@
     subtitle: "Cursed tech for<br />mischievous togetherness",
     manifesto: "Manifesto",
     evidence: "Evidence",
+    location: "Based somewhere and accepting<br />projects sometimes",
   };
 
   const paragraphs = {
@@ -89,12 +90,7 @@
 </script>
 
 <main>
-  <FlashingText
-    tag="h1"
-    content={titles.main}
-    flashInterval={1000}
-    flashDuration={100}
-  />
+  <h1>{titles.main}</h1>
 
   <section style="margin: 0 0 15rem 0">
     <FlashingText
@@ -102,16 +98,12 @@
       content={titles.subtitle}
       flashInterval={1100}
       flashDuration={200}
+      glitchInterval={3000}
+      glitchDuration={70}
     />
-    <div style="position: relative;">
-      <p style="visibility: hidden;">
-        {@html paragraphs.intro}
-      </p>
-      <!-- transition:typewriter={{ speed: 2 }} -->
-      <p style="position: absolute; top: 0; left: 0; width: 100%;">
-        {@html paragraphs.intro}
-      </p>
-    </div>
+    <p>
+      {@html paragraphs.intro}
+    </p>
   </section>
 
   <section style="margin: 0 0 7rem 0">
@@ -120,60 +112,32 @@
       content={titles.manifesto}
       flashInterval={1500}
       flashDuration={400}
+      glitchInterval={4000}
+      glitchDuration={60}
     />
-    <div style="position: relative;">
-      <p style="visibility: hidden;">
-        {@html paragraphs.manifesto}
-      </p>
-      <!-- transition:typewriter={{ speed: 3 }} -->
-      <p style="position: absolute; top: 0; left: 0; width: 100%;">
-        {@html paragraphs.manifesto}
-      </p>
-    </div>
+    <p>
+      {@html paragraphs.manifesto}
+    </p>
   </section>
 
-  <section style="margin: 0 0 7rem 0">
+  <section style="margin: 0 0 15rem 0">
     <FlashingText
       tag="h2"
       content={titles.evidence}
       flashInterval={800}
       flashDuration={100}
+      glitchInterval={2500}
+      glitchDuration={50}
     />
     <EvidenceGrid evidences={evidenceData} />
   </section>
+
+  <FlashingText
+    tag="h2"
+    content={titles.location}
+    flashInterval={1100}
+    flashDuration={200}
+    glitchInterval={3000}
+    glitchDuration={70}
+  />
 </main>
-
-<style>
-  :global(h1) {
-    font-family: "Inknut Antiqua";
-    font-weight: 300;
-    font-size: 9rem;
-    line-height: 1;
-    letter-spacing: -0.15em;
-    color: #0b0b0b;
-    margin: 0 0 5rem 0;
-    padding: 0;
-  }
-
-  :global(h2) {
-    font-family: "Inknut Antiqua";
-    font-weight: 300;
-    font-size: 3.7rem;
-    line-height: 1.2;
-    letter-spacing: -0.1em;
-    color: #0b0b0b;
-    margin: 0 0 0.7rem 0;
-    padding: 0;
-  }
-
-  p {
-    font-family: "Inter";
-    font-weight: 300;
-    font-size: 1.9rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: #0b0b0b;
-    margin: 0;
-    padding: 0;
-  }
-</style>

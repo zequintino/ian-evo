@@ -37,12 +37,6 @@
   }
 
   .evidence-item p {
-    font-family: "Inter";
-    font-weight: 300;
-    font-size: 1.9rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: #0b0b0b;
     margin: 0 0 0.8rem 0;
   }
 
@@ -56,11 +50,10 @@
     color: #0b0b0b;
   }
 
-  /* Mobile breakpoint */
   @media (max-width: 768px) {
     .evidence-grid {
-      grid-template-columns: 1fr; /* 1 column on mobile */
-      gap: 2rem; /* Adjust gap for mobile */
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
   }
 </style>
