@@ -20,7 +20,14 @@
 
 body {
   margin: 0;
-  padding: 0 30em 0 0.7em;
-  /* padding: 0 15.5em 0; */
-  background-color: #E35B52;
+  padding: 0 30em 0 0.7em; 
+  /* background-color: #E35B52; */
+}
+
+/* Media query for mobile screens */
+@media (max-width: 1024px) { /* Adjust breakpoint as needed */
+  body {
+    /* Padding for smaller screens */
+    padding: 0 0.7em; 
+  }
 }

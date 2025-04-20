@@ -1,4 +1,6 @@
 <script lang="ts">
+  import EvidenceGrid from './lib/EvidenceGrid.svelte';
+
   type TypewriterParams = {
     speed?: number;
   };
@@ -50,6 +52,29 @@
       and a deadline. 3 months max. Open source only.
     `,
   };
+
+  const evidenceData = [
+    {
+      title: "Is the Machine Working?",
+      description: "Find out if the ticket machines are broken before you go underground. Built with scrap code and civic frustration.",
+      status: "[Coming Soon]"
+    },
+    {
+      title: "Ham Prep PT",
+      description: "The Millennial Guide to the CAT III exam in Portugal.",
+      status: "[Coming Soon]"
+    },
+    {
+      title: "Careful, PiBites",
+      description: "A Raspberry Pi barks if someone enters your flat. Because thieves deserve to laugh too.",
+      status: "[Coming Soon]"
+    },
+    {
+      title: "SpamBots for a Better World",
+      description: "The daily automated spam will continue until infrastructure improves. Anti-bureaucracy strategies for the new world.",
+      status: "[Coming Soon]"
+    }
+  ];
 </script>
 
 <main>
@@ -88,8 +113,9 @@
     </div>
   </section>
 
-  <section>
+  <section style="margin: 0 0 7rem 0">
     <h2>Evidence</h2>
+    <EvidenceGrid evidences={evidenceData} />
   </section>
 </main>
 
