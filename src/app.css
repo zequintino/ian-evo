@@ -1,5 +1,5 @@
 /* Font declarations */
-@font-face {
+/* @font-face {
   font-family: "Inknut Antiqua";
   src: url("static/fonts/Inknut_Antiqua/InknutAntiqua-Light.ttf") format("truetype");
   font-weight: 300;
@@ -13,7 +13,7 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 /* Root styles */
 :root {
