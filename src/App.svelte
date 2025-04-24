@@ -1,6 +1,7 @@
 <script lang="ts">
   import EvidenceGrid from "./lib/EvidenceGrid.svelte";
   import FlashingText from "./lib/FlashingText.svelte";
+  import ProjectList from "./lib/ProjectList.svelte";
 
   // type TypewriterParams = {
   //   speed?: number;
@@ -61,6 +62,11 @@
       and a deadline. 3 months max. Open source only.
     `,
   };
+
+  const projects = [
+    "svelte-based projects",
+    "LoRa protocol initiatives",
+  ];
 
   const evidenceData = [
     {
@@ -132,12 +138,18 @@
     <EvidenceGrid evidences={evidenceData} />
   </section>
 
-  <FlashingText
-    tag="h2"
-    content={titles.location}
-    flashInterval={1100}
-    flashDuration={200}
-    glitchInterval={3000}
-    glitchDuration={70}
-  />
+  <div>
+    <FlashingText
+      tag="h2"
+      content={titles.location}
+      flashInterval={1100}
+      flashDuration={200}
+      glitchInterval={3000}
+      glitchDuration={70}
+    />
+
+    <h3 style="margin: 2rem 0 0 0">Now open to:</h3>
+    <ProjectList projectDescriptionList={projects} />
+  </div>
+
 </main>

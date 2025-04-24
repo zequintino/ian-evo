@@ -25,7 +25,7 @@
     gap: 5rem 1rem;
   }
 
-  .evidence-item h3 {
+  /* .evidence-item h3 {
     font-family: "Inter";
     font-weight: 400;
     font-style: italic;
@@ -34,7 +34,7 @@
     letter-spacing: -0.02em;
     color: #0b0b0b;
     margin: 0 0 1.5rem 0;
-  }
+  } */
 
   .evidence-item p {
     margin: 0 0 0.8rem 0;

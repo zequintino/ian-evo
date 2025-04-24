@@ -55,7 +55,18 @@ h2 {
   hyphens: manual;
 }
 
-p {
+h3 {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #0b0b0b;
+  margin: 0 0 1.5rem 0;
+}
+
+p, li {
   font-family: "Inter";
   font-weight: 300;
   font-size: 1.9rem;
