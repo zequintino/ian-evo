@@ -165,7 +165,7 @@
 
   <footer>
     <p class="footer-left">© i.e., 2025</p>
-    <img src="/src/assets/ie-logo.svg" alt="i.e., logo" />
+    <img src="/assets/ie-logo.svg" alt="i.e., logo" />
     <p class="footer-right">no cookies, no analytics.</p>
   </footer>
 </main>
