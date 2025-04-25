@@ -39,6 +39,8 @@ h1 {
   word-break: keep-all;
   white-space: normal;
   hyphens: manual;
+  cursor: default;
+  user-select: none;
 }
 
 h2 {
@@ -53,6 +55,8 @@ h2 {
   word-break: keep-all;
   white-space: normal;
   hyphens: manual;
+  cursor: default;
+  user-select: none;
 }
 
 h3 {

@@ -2,6 +2,7 @@
   import EvidenceGrid from "./lib/EvidenceGrid.svelte";
   import FlashingText from "./lib/FlashingText.svelte";
   import ProjectList from "./lib/ProjectList.svelte";
+  import Button from "./lib/Button.svelte";
 
   // type TypewriterParams = {
   //   speed?: number;
@@ -63,10 +64,7 @@
     `,
   };
 
-  const projects = [
-    "svelte-based projects",
-    "LoRa protocol initiatives",
-  ];
+  const projects = ["svelte-based projects", "LoRa protocol initiatives"];
 
   const evidenceData = [
     {
@@ -93,6 +91,12 @@
       status: "[Coming Soon]",
     },
   ];
+
+  const footerData = {
+    leftColumn: "ie",
+    centerColumn: "© 2024",
+    rightColumn: "info@ie-studio.xyz",
+  };
 </script>
 
 <main>
@@ -152,4 +156,60 @@
     <ProjectList projectDescriptionList={projects} />
   </div>
 
+  <div class="buttons-container">
+    <Button firstHalf="Submit " specialChar="m" secondHalf="ischief" />
+    <Button firstHalf="Conspire with " specialChar="u" secondHalf="s" />
+  </div>
+
+  <p class="buttons-description">Unserious inquiries only.</p>
+
+  <footer>
+    <p class="footer-left">© i.e., 2025</p>
+    <img src="/src/assets/ie-logo.svg" alt="i.e., logo" />
+    <p class="footer-right">no cookies, no analytics.</p>
+  </footer>
 </main>
+
+<style>
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0 0 0.9rem 0;
+  }
+
+  .buttons-description {
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 9rem 0;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #0b0b0b;
+  }
+
+  .footer-left {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .footer-right {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: right;
+  }
+
+  footer img {
+    width: 1.7rem;
+    height: auto;
+    margin: 0;
+  }
+</style>

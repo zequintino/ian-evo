@@ -14,7 +14,7 @@
 <style>
   ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 3rem 0;
     padding: 0;
   }
 
