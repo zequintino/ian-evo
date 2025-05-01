@@ -3,6 +3,7 @@
   import FlashingText from "./lib/FlashingText.svelte";
   import ProjectList from "./lib/ProjectList.svelte";
   import Button from "./lib/Button.svelte";
+  import { titles, paragraphs, projects, evidenceData, footerData,} from "./lib/utils/content";
 
   // type TypewriterParams = {
   //   speed?: number;
@@ -39,64 +40,6 @@
   //     },
   //   };
   // }
-
-  const titles = {
-    main: "ie",
-    subtitle: "Cursed tech for<br />mischievous togetherness",
-    manifesto: "Manifesto",
-    evidence: "Evidence",
-    location: "Based somewhere and accepting<br />projects sometimes",
-  };
-
-  const paragraphs = {
-    intro: `
-      A studio for experiments, <i>microproducts</i>, and creative tech that
-      doesn't scale. Publishing through local, specific, and brief prototypes.
-    `,
-    manifesto: `
-      We system-pair creatives and technologists to build together. Not forever,
-      just for a while. We don't scale, we don't optimise, we don't repeat. Each
-      project is an excuse to learn, an experiment, a <i>microproduct</i> (sometimes
-      useful, sometimes funny, sometimes both). Curatorship is the method, collaboration
-      is the form, publication is the output. We work locally, specifically, briefly,
-      leaving traces but no traffic. No roadmap, no KPIs, no funnels, just curiosity
-      and a deadline. 3 months max. Open source only.
-    `,
-  };
-
-  const projects = ["svelte-based projects", "LoRa protocol initiatives"];
-
-  const evidenceData = [
-    {
-      title: "Is the Machine Working?",
-      description:
-        "Find out if the ticket machines are broken before you go underground. Built with scrap code and civic frustration.",
-      status: "[Coming Soon]",
-    },
-    {
-      title: "Ham Prep PT",
-      description: "The Millennial Guide to the CAT III exam in Portugal.",
-      status: "[Coming Soon]",
-    },
-    {
-      title: "Careful, PiBites",
-      description:
-        "A Raspberry Pi barks if someone enters your flat. Because thieves deserve to laugh too.",
-      status: "[Coming Soon]",
-    },
-    {
-      title: "SpamBots for a Better World",
-      description:
-        "The daily automated spam will continue until infrastructure improves. Anti-bureaucracy strategies for the new world.",
-      status: "[Coming Soon]",
-    },
-  ];
-
-  const footerData = {
-    leftColumn: "ie",
-    centerColumn: "© 2024",
-    rightColumn: "info@ie-studio.xyz",
-  };
 </script>
 
 <main>
@@ -142,7 +85,7 @@
     <EvidenceGrid evidences={evidenceData} />
   </section>
 
-  <div>
+  <aside>
     <FlashingText
       tag="h2"
       content={titles.location}
@@ -154,21 +97,23 @@
 
     <h3 style="margin: 2rem 0 0 0">Now open to:</h3>
     <ProjectList projectDescriptionList={projects} />
-  </div>
+  </aside>
+</main>
 
+<aside style="padding: 0 0.7em">
   <div class="buttons-container">
     <Button firstHalf="Submit " specialChar="m" secondHalf="ischief" />
     <Button firstHalf="Conspire with " specialChar="u" secondHalf="s" />
   </div>
 
-  <p class="buttons-description">Unserious inquiries only.</p>
+  <p class="cta-description">Unserious inquiries only.</p>
+</aside>
 
-  <footer>
-    <p class="footer-left">© i.e., 2025</p>
-    <img src="ie-logo.svg" alt="i.e., logo" />
-    <p class="footer-right">no cookies, no analytics.</p>
-  </footer>
-</main>
+<footer style="padding: 0 0.7em">
+  <p class="footer-left">{footerData.leftColumn}</p>
+  <img src="/ie-logo.svg" alt="i.e., logo" />
+  <p class="footer-right">{footerData.rightColumn}</p>
+</footer>
 
 <style>
   .buttons-container {
@@ -179,7 +124,7 @@
     margin: 0 0 0.9rem 0;
   }
 
-  .buttons-description {
+  .cta-description {
     font-size: 1.1rem;
     font-weight: 400;
     text-align: center;

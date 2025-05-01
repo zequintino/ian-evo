@@ -22,8 +22,18 @@
 
 /* Global layout */
 body {
-  margin: 0;
+  margin: 0;  
+}
+
+main {
   padding: 0 30em 0 0.7em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  main {
+    padding: 0 0.7em;
+  }
 }
 
 /* Typography */
@@ -82,11 +92,4 @@ p, li {
   word-break: keep-all;
   white-space: normal;
   hyphens: manual;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  body {
-    padding: 0 0.7em;
-  }
 }

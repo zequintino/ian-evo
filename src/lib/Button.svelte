@@ -6,10 +6,17 @@
   }
 
   let { firstHalf = "", secondHalf = "", specialChar = "" }: Props = $props();
+  let isHovered = $state(false);
 </script>
 
-<button>
+<button
+  onmouseenter={() => (isHovered = true)}
+  onmouseleave={() => (isHovered = false)}
+>
   {firstHalf}<span>{specialChar}</span>{secondHalf}
+  {#if isHovered}
+    <span class="arrow">→</span>
+  {/if}
 </button>
 
 <style>
